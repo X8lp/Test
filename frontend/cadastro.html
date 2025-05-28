@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cadastro - Reciclapp Manaus</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/w3-custom.css" />
+  <link rel="stylesheet" href="css/background.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js"></script>
+</head>
+<body>
+  <div class="content-wrapper">
+  <div class="w3-top">
+    <div class="w3-row w3-large">
+      <div class="w3-col s3">
+        <a href="index.html" class="w3-button w3-block">Início</a>
+      </div>
+      <div class="w3-col s3">
+        <a href="pontos.html" class="w3-button w3-block">Pontos de Coleta</a>
+      </div>
+      <div class="w3-col s3">
+        <a href="cadastro.html" class="w3-button w3-block">Cadastro</a>
+      </div>
+      <div class="w3-col s3">
+        <a href="beneficios.html" class="w3-button w3-block">Benefícios</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-section w3-container w3-center">
+    <h1>Cadastro no Reciclapp Manaus</h1>
+    <p>Faça parte da nossa rede de reciclagem em Manaus</p>
+  </div>
+
+  <div class="form-container w3-container">
+    <form id="formCadastro" class="w3-card-4 w3-white w3-padding-32">
+      <div class="form-type-selector w3-center">
+        <button type="button" class="type-btn active" data-type="empresa">
+          <i class="fa fa-building w3-margin-right"></i>Empresa
+        </button>
+        <button type="button" class="type-btn" data-type="coletor">
+          <i class="fa fa-truck w3-margin-right"></i>Coletor
+        </button>
+        <button type="button" class="type-btn" data-type="pessoa">
+          <i class="fa fa-user w3-margin-right"></i>Pessoa Física
+        </button>
+      </div>
+
+      <div class="form-section">
+        <h2><i class="fa fa-info-circle w3-margin-right"></i>Informações Básicas</h2>
+        <input type="text" id="nome" class="w3-input" placeholder="Nome completo ou Razão Social" required />
+        <input type="email" id="email" class="w3-input" placeholder="E-mail" required />
+        <input type="tel" id="telefone" class="w3-input" placeholder="Telefone" required />
+      </div>
+
+      <div class="form-section">
+        <h2><i class="fa fa-map-marker w3-margin-right"></i>Endereço em Manaus</h2>
+        <input type="text" id="endereco" class="w3-input" placeholder="Endereço" required />
+        <input type="text" id="numero" class="w3-input" placeholder="Número" required />
+        <input type="text" id="bairro" class="w3-input" placeholder="Bairro" required />
+        <select id="zona" class="w3-select" required>
+          <option value="">Selecione a Zona</option>
+          <option value="norte">Zona Norte</option>
+          <option value="sul">Zona Sul</option>
+          <option value="leste">Zona Leste</option>
+          <option value="oeste">Zona Oeste</option>
+          <option value="centro-sul">Zona Centro-Sul</option>
+          <option value="centro-oeste">Zona Centro-Oeste</option>
+        </select>
+      </div>
+
+      <div id="empresa-fields" class="form-section conditional-fields">
+        <h2><i class="fa fa-industry w3-margin-right"></i>Informações da Empresa</h2>
+        <input type="text" id="cnpj" class="w3-input" placeholder="CNPJ" />
+        <input type="text" id="razao-social" class="w3-input" placeholder="Razão Social" />
+        <select id="tipo-empresa" class="w3-select" multiple>
+          <option value="papel">Papel</option>
+          <option value="plastico">Plástico</option>
+          <option value="vidro">Vidro</option>
+          <option value="metal">Metal</option>
+          <option value="eletronico">Eletrônicos</option>
+        </select>
+        <textarea id="descricao-empresa" class="w3-input" placeholder="Descreva os tipos de materiais que sua empresa recebe e processa"></textarea>
+      </div>
+
+      <div id="coletor-fields" class="form-section conditional-fields hidden">
+        <h2><i class="fa fa-recycle w3-margin-right"></i>Informações do Coletor</h2>
+        <input type="text" id="cpf-coletor" class="w3-input" placeholder="CPF" />
+        <select id="tipo-coleta" class="w3-select" multiple>
+          <option value="papel">Papel</option>
+          <option value="plastico">Plástico</option>
+          <option value="vidro">Vidro</option>
+          <option value="metal">Metal</option>
+          <option value="eletronico">Eletrônicos</option>
+        </select>
+        <select id="regiao-atuacao" class="w3-select" multiple>
+          <option value="norte">Zona Norte</option>
+          <option value="sul">Zona Sul</option>
+          <option value="leste">Zona Leste</option>
+          <option value="oeste">Zona Oeste</option>
+          <option value="centro-sul">Zona Centro-Sul</option>
+          <option value="centro-oeste">Zona Centro-Oeste</option>
+        </select>
+        <textarea id="disponibilidade" class="w3-input" placeholder="Informe sua disponibilidade de horários para coleta"></textarea>
+      </div>
+
+      <div id="pessoa-fields" class="form-section conditional-fields hidden">
+        <h2><i class="fa fa-user-circle w3-margin-right"></i>Informações Pessoais</h2>
+        <input type="text" id="cpf-pessoa" class="w3-input" placeholder="CPF" />
+        <select id="interesse-reciclagem" class="w3-select" multiple>
+          <option value="papel">Papel</option>
+          <option value="plastico">Plástico</option>
+          <option value="vidro">Vidro</option>
+          <option value="metal">Metal</option>
+          <option value="eletronico">Eletrônicos</option>
+        </select>
+        <textarea id="observacoes" class="w3-input" placeholder="Observações ou comentários adicionais"></textarea>
+      </div>
+
+      <div id="mensagem" class="message-container"></div>
+
+      <button type="submit" class="w3-button w3-block w3-primary w3-section">
+        <i class="fa fa-check w3-margin-right"></i>Cadastrar
+      </button>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-32 w3-center">
+    <h4>Reciclapp Manaus</h4>
+    <a href="#" class="w3-button w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>Voltar ao topo</a>
+    <div class="w3-xlarge w3-section">
+      <i class="fa fa-facebook-official w3-hover-opacity"></i>
+      <i class="fa fa-instagram w3-hover-opacity"></i>
+      <i class="fa fa-twitter w3-hover-opacity"></i>
+      <i class="fa fa-linkedin w3-hover-opacity"></i>
+    </div>
+    <p class="w3-small">© 2023 Reciclapp Manaus. Todos os direitos reservados.</p>
+  </footer>
+
+  </div> <!-- Close content-wrapper -->
+
+  <script>
+    // Controle de exibição dos campos condicionais
+    document.querySelectorAll('.type-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        document.querySelectorAll('.type-btn').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        
+        // Hide all conditional fields first
+        document.querySelectorAll('.conditional-fields').forEach(field => field.classList.add('hidden'));
+        
+        // Show the appropriate fields based on type
+        const type = button.dataset.type;
+        switch(type) {
+          case 'empresa':
+            document.getElementById('empresa-fields').classList.remove('hidden');
+            break;
+          case 'coletor':
+            document.getElementById('coletor-fields').classList.remove('hidden');
+            break;
+          case 'pessoa':
+            document.getElementById('pessoa-fields').classList.remove('hidden');
+            break;
+        }
+      });
+    });
+
+    // Envio do formulário
+    document.getElementById('formCadastro').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const tipo = document.querySelector('.type-btn.active').dataset.type;
+      
+      const dadosBasicos = {
+        nome: document.getElementById('nome').value,
+        email: document.getElementById('email').value,
+        telefone: document.getElementById('telefone').value,
+        endereco: document.getElementById('endereco').value,
+        numero: document.getElementById('numero').value,
+        bairro: document.getElementById('bairro').value,
+        zona: document.getElementById('zona').value,
+        tipo: tipo
+      };
+
+      let dadosEspecificos = {};
+      switch(tipo) {
+        case 'empresa':
+          dadosEspecificos = {
+            cnpj: document.getElementById('cnpj').value,
+            razaoSocial: document.getElementById('razao-social').value,
+            tiposMaterial: Array.from(document.getElementById('tipo-empresa').selectedOptions).map(opt => opt.value),
+            descricao: document.getElementById('descricao-empresa').value
+          };
+          break;
+        case 'coletor':
+          dadosEspecificos = {
+            cpf: document.getElementById('cpf-coletor').value,
+            tiposColeta: Array.from(document.getElementById('tipo-coleta').selectedOptions).map(opt => opt.value),
+            regiaoAtuacao: Array.from(document.getElementById('regiao-atuacao').selectedOptions).map(opt => opt.value),
+            disponibilidade: document.getElementById('disponibilidade').value
+          };
+          break;
+        case 'pessoa':
+          dadosEspecificos = {
+            cpf: document.getElementById('cpf-pessoa').value,
+            interesseReciclagem: Array.from(document.getElementById('interesse-reciclagem').selectedOptions).map(opt => opt.value),
+            observacoes: document.getElementById('observacoes').value
+          };
+          break;
+      }
+
+      const dados = { ...dadosBasicos, ...dadosEspecificos };
+
+      try {
+        const response = await fetch('http://localhost:3000/api/usuarios', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dados)
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+          document.getElementById('mensagem').textContent = 'Cadastro realizado com sucesso!';
+          document.getElementById('mensagem').className = 'message-container success';
+          e.target.reset();
+          // Reset the form type to empresa (default)
+          document.querySelector('[data-type="empresa"]').click();
+        } else {
+          document.getElementById('mensagem').textContent = 'Erro: ' + result.erro;
+          document.getElementById('mensagem').className = 'message-container error';
+        }
+      } catch (err) {
+        document.getElementById('mensagem').textContent = 'Erro de conexão com o servidor.';
+        document.getElementById('mensagem').className = 'message-container error';
+      }
+    });
+
+    // Initialize Vanta.js background
+    VANTA.TOPOLOGY({
+      el: "body",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0xcff237,
+      backgroundColor: 0xe5252
+    })
+  </script>
+</body>
+</html>

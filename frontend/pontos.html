@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pontos de Coleta - Reciclapp Manaus</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/w3-custom.css" />
+  <link rel="stylesheet" href="css/background.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js"></script>
+</head>
+<body>
+  <div class="content-wrapper">
+  <div class="w3-top">
+    <div class="w3-row w3-large">
+      <div class="w3-col s3">
+        <a href="index.html" class="w3-button w3-block">Início</a>
+      </div>
+      <div class="w3-col s3">
+        <a href="pontos.html" class="w3-button w3-block">Pontos de Coleta</a>
+      </div>
+      <div class="w3-col s3">
+        <a href="cadastro.html" class="w3-button w3-block">Cadastro</a>
+      </div>
+      <div class="w3-col s3">
+        <a href="beneficios.html" class="w3-button w3-block">Benefícios</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-section w3-container w3-center">
+    <h1>Pontos de Coleta</h1>
+    <p>Encontre os pontos de coleta mais próximos de você</p>
+  </div>
+
+  <div class="search-section w3-container">
+    <div class="w3-center">
+      <h2>Encontre Pontos de Coleta</h2>
+    </div>
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-tipo="todos">
+        <i class="fa fa-recycle w3-margin-right"></i>Todos
+      </button>
+      <button class="filter-btn" data-tipo="papel">
+        <i class="fa fa-file-text w3-margin-right"></i>Papel
+      </button>
+      <button class="filter-btn" data-tipo="plastico">
+        <i class="fa fa-shopping-bag w3-margin-right"></i>Plástico
+      </button>
+      <button class="filter-btn" data-tipo="vidro">
+        <i class="fa fa-glass w3-margin-right"></i>Vidro
+      </button>
+      <button class="filter-btn" data-tipo="metal">
+        <i class="fa fa-cube w3-margin-right"></i>Metal
+      </button>
+      <button class="filter-btn" data-tipo="eletronico">
+        <i class="fa fa-laptop w3-margin-right"></i>Eletrônicos
+      </button>
+    </div>
+    <div class="w3-row-padding w3-section">
+      <div class="w3-twothird">
+        <input class="w3-input" type="text" id="searchInput" placeholder="Busque por bairro ou tipo de material...">
+      </div>
+      <div class="w3-third">
+        <button class="w3-button w3-block w3-primary" id="searchBtn">
+          <i class="fa fa-search w3-margin-right"></i>Buscar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-row-padding w3-padding-64">
+    <div class="w3-twothird">
+      <div id="map" class="w3-card w3-round">
+        <!-- Mapa será carregado aqui -->
+      </div>
+    </div>
+    <div class="w3-third">
+      <div class="w3-card w3-round w3-padding">
+        <h3>Pontos de Coleta</h3>
+        <ul id="listaPontos" class="w3-ul"></ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="add-point">
+    <div class="w3-center">
+      <h2>Adicionar Novo Ponto de Coleta</h2>
+    </div>
+    <form id="formPonto" class="w3-container w3-card-4 w3-light-grey w3-text-dark-grey w3-margin">
+      <div class="w3-row w3-section">
+        <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+        <div class="w3-rest">
+          <input class="w3-input" type="text" id="nome" placeholder="Nome do Ponto" required>
+        </div>
+      </div>
+
+      <div class="w3-row w3-section">
+        <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-map-marker"></i></div>
+        <div class="w3-rest">
+          <input class="w3-input" type="text" id="endereco" placeholder="Endereço em Manaus" required>
+        </div>
+      </div>
+
+      <div class="w3-row w3-section">
+        <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-location-arrow"></i></div>
+        <div class="w3-rest">
+          <select class="w3-select" id="zona" required>
+            <option value="" disabled selected>Selecione a Zona</option>
+            <option value="norte">Zona Norte</option>
+            <option value="sul">Zona Sul</option>
+            <option value="leste">Zona Leste</option>
+            <option value="oeste">Zona Oeste</option>
+            <option value="centro-sul">Zona Centro-Sul</option>
+            <option value="centro-oeste">Zona Centro-Oeste</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="w3-row w3-section">
+        <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-recycle"></i></div>
+        <div class="w3-rest">
+          <select class="w3-select" id="tipo" required>
+            <option value="" disabled selected>Tipo de Material</option>
+            <option value="papel">Papel</option>
+            <option value="plastico">Plástico</option>
+            <option value="vidro">Vidro</option>
+            <option value="metal">Metal</option>
+            <option value="eletronico">Eletrônicos</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="w3-row w3-section">
+        <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-pencil"></i></div>
+        <div class="w3-rest">
+          <textarea class="w3-input" id="descricao" rows="4" placeholder="Descrição do ponto de coleta (horário de funcionamento, materiais aceitos, etc)" required></textarea>
+        </div>
+      </div>
+
+      <button type="submit" class="w3-button w3-block w3-section w3-primary">
+        <i class="fa fa-plus w3-margin-right"></i>Adicionar Ponto
+      </button>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-32 w3-center">
+    <h4>Reciclapp Manaus</h4>
+    <a href="#" class="w3-button w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>Voltar ao topo</a>
+    <div class="w3-xlarge w3-section">
+      <i class="fa fa-facebook-official w3-hover-opacity"></i>
+      <i class="fa fa-instagram w3-hover-opacity"></i>
+      <i class="fa fa-twitter w3-hover-opacity"></i>
+      <i class="fa fa-linkedin w3-hover-opacity"></i>
+    </div>
+    <p class="w3-small">© 2023 Reciclapp Manaus. Todos os direitos reservados.</p>
+  </footer>
+
+  </div> <!-- Close content-wrapper -->
+
+  <script type="module" src="js/controllers/pontoController.js"></script>
+  <script>
+    // Funcionalidade dos botões de filtro
+    document.querySelectorAll('.filter-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        // Aqui vai a lógica de filtro
+      });
+    });
+
+    // Initialize Vanta.js background
+    VANTA.TOPOLOGY({
+      el: "body",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0xcff237,
+      backgroundColor: 0xe5252
+    })
+  </script>
+</body>
+</html>

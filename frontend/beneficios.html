@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Benefícios da Reciclagem - Reciclapp Manaus</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/w3-custom.css" />
+  <link rel="stylesheet" href="css/background.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js"></script>
+</head>
+<body>
+  <div class="content-wrapper">
+  <div class="w3-top">
+    <div class="w3-row w3-large">
+      <div class="w3-col s3">
+        <a href="index.html" class="w3-button w3-block">Início</a>
+      </div>
+      <div class="w3-col s3">
+        <a href="pontos.html" class="w3-button w3-block">Pontos de Coleta</a>
+      </div>
+      <div class="w3-col s3">
+        <a href="cadastro.html" class="w3-button w3-block">Cadastro</a>
+      </div>
+      <div class="w3-col s3">
+        <a href="beneficios.html" class="w3-button w3-block">Benefícios</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-section w3-container w3-center">
+    <h1>Benefícios da Reciclagem</h1>
+    <p>Descubra como a reciclagem pode transformar nossa cidade</p>
+  </div>
+
+  <div class="benefits-container">
+    <div class="benefit-card w3-card">
+      <div class="benefit-icon">
+        <i class="fa fa-leaf fa-3x"></i>
+      </div>
+      <h2>Preservação Ambiental</h2>
+      <p>A reciclagem ajuda a preservar a rica biodiversidade amazônica, reduzindo o impacto no meio ambiente e protegendo nossa floresta.</p>
+      <button class="learn-more" onclick="toggleInfo('ambiental')">Saiba mais</button>
+      <div id="ambiental" class="hidden-info">
+        <ul class="w3-ul">
+          <li>Redução do desmatamento</li>
+          <li>Preservação dos recursos hídricos</li>
+          <li>Diminuição da poluição do solo</li>
+          <li>Proteção da fauna e flora local</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="benefit-card w3-card">
+      <div class="benefit-icon">
+        <i class="fa fa-money fa-3x"></i>
+      </div>
+      <h2>Benefícios Econômicos</h2>
+      <p>A reciclagem gera empregos e renda para a população de Manaus, além de reduzir custos com matéria-prima para as empresas.</p>
+      <button class="learn-more" onclick="toggleInfo('economico')">Saiba mais</button>
+      <div id="economico" class="hidden-info">
+        <ul class="w3-ul">
+          <li>Geração de empregos diretos e indiretos</li>
+          <li>Economia para empresas locais</li>
+          <li>Desenvolvimento da economia circular</li>
+          <li>Redução de custos com aterros sanitários</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="benefit-card w3-card">
+      <div class="benefit-icon">
+        <i class="fa fa-users fa-3x"></i>
+      </div>
+      <h2>Benefícios Sociais</h2>
+      <p>A reciclagem promove a inclusão social e melhora a qualidade de vida dos manauaras através da conscientização ambiental.</p>
+      <button class="learn-more" onclick="toggleInfo('social')">Saiba mais</button>
+      <div id="social" class="hidden-info">
+        <ul class="w3-ul">
+          <li>Inclusão social de catadores</li>
+          <li>Melhoria da limpeza urbana</li>
+          <li>Educação ambiental</li>
+          <li>Fortalecimento da comunidade</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-32 w3-center">
+    <h4>Reciclapp Manaus</h4>
+    <a href="#" class="w3-button w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>Voltar ao topo</a>
+    <div class="w3-xlarge w3-section">
+      <i class="fa fa-facebook-official w3-hover-opacity"></i>
+      <i class="fa fa-instagram w3-hover-opacity"></i>
+      <i class="fa fa-twitter w3-hover-opacity"></i>
+      <i class="fa fa-linkedin w3-hover-opacity"></i>
+    </div>
+    <p class="w3-small">© 2023 Reciclapp Manaus. Todos os direitos reservados.</p>
+  </footer>
+
+  </div> <!-- Close content-wrapper -->
+
+  <script>
+    function toggleInfo(id) {
+      const element = document.getElementById(id);
+      element.classList.toggle('hidden-info');
+    }
+
+    VANTA.TOPOLOGY({
+      el: "body",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0xcff237,
+      backgroundColor: 0xe5252
+    })
+  </script>
+</body>
+</html>
